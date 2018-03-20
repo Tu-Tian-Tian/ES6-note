@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>letAndConst</title>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script> -->
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	if (true) {
+	  // 在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”
+	  
+	  //tmp = 'abc'; // ReferenceError
+	  //console.log(tmp); // ReferenceError
+
+	  let tmp; // TDZ结束
+	  console.log(tmp); // undefined
+
+	  tmp = 123;
+	  console.log(tmp); // 123
+	}
+	var a = [];
+	for (let i = 0; i < 10; i++) {
+	  a[i] = function () {
+	    console.log(i);
+	  };
+	}
+	a[6]();//解决了传统问题
+	function func() {//不允许在相同作用域内，重复声明同一个变量。
+	  //let a = 10;//Identifier 'a' has already been declared
+	  let a = 1;
+	}
+	(function(){
+		console.log('函数自调用')
+	})()
+
+
+	function f() { console.log('I am outside!'); }
+	(function () {
+	  if (false) {
+	    function f() { console.log('I am inside!'); }
+	  }
+	  //f(); //块级作用域内，声明函数会造成变量提升，f = undefined
+	}());
+	var aaaa = 'aaaaaaa';
+	(function(){
+		if(false){
+			var aaaa = 'bbbbb'
+		}
+		console.log(aaaa)
+	}())
+	const firstConst = "第一个常量"
+	if (true) {
+	  
+	  const firstConst = '第二个常量';
+	  console.log(firstConst)
+	}
+	console.log(firstConst);
+	var obj = {
+		'car1':"奔驰",
+		'car2':"宝马",
+		'car3':"大众",
+		'car4':"奥迪",
+	}
+	obj2 = ['car1','car2','car3']
+	console.log('car1' in obj)
+	console.log('car' in obj)
+	console.log('car1' in obj2)
+	console.log(0 in obj2)
+	console.log(4 in obj2)
+	
+
+</script>
+</html>
